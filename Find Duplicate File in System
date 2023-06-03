@@ -1,0 +1,21 @@
+from typing import List
+
+class Solution:
+    def findDuplicate(self, paths: List[str]) -> List[List[str]]:
+        contentToPathFiles = {}
+        
+        for path in paths:
+            words = path.split()
+            rootPath = words[0]
+            
+            for file in words[1:]:
+                name, content = file.split('(')
+                content = content[:-1]
+                filePath = rootPath + '/' + name
+                
+                if content in contentToPathFiles:
+                    contentToPathFiles[content].append(filePath)
+                else:
+                    contentToPathFiles[content] = [filePath]
+        
+        return [files for files in contentToPathFiles.values() if len(files) > 1]
