@@ -1,0 +1,10 @@
+    n = int(input())
+    a = list(map(int, input().split()))
+     
+    evens = [num for num in a if num % 2 == 0]
+    odds = [num for num in a if num % 2 != 0]
+     
+    if evens and odds:
+        print(*sorted(a))
+    else:
+        print(*a)
