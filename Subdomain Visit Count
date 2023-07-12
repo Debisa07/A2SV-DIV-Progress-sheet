@@ -1,0 +1,16 @@
+from typing import List
+
+class Solution:
+    def subdomainVisits(self, cpdomains: List[str]) -> List[str]:
+        count = {}
+        
+        for cpdomain in cpdomains:
+            visits, domain = cpdomain.split()
+            visits = int(visits)
+            subdomains = domain.split('.')
+            
+            for i in range(len(subdomains)):
+                subdomain = '.'.join(subdomains[i:])
+                count[subdomain] = count.get(subdomain, 0) + visits
+        
+        return [f"{count[subdomain]} {subdomain}" for subdomain in count]
